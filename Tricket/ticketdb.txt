@@ -7,8 +7,9 @@ CREATE TABLE Tickets (
     Artist VARCHAR(255) NOT NULL,
     Description TEXT,
     EventDate DATE NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL, -- Assuming maximum price is less than a billion with two decimal places
-    SellerName VARCHAR(255) NOT NULL
+    Price DECIMAL(10, 2) NOT NULL,
+    SellerName VARCHAR(255) NOT NULL,
+    ImagePath VARCHAR(255)
 );
 
 # create table mit namen bugusers
@@ -28,12 +29,7 @@ show tables;
 drop tables bugusers;
 
 # get details of table
-describe bugitems;
-
-#insert into bugitems table
-INSERT INTO bugitems (id, priority, username, title, description) VALUES (1, 2, 'Luke', 'GUI Problem', 'GUI really not working');
-INSERT INTO bugitems (id, priority, username, title, description) VALUES (2, 2, 'Nat', 'Backend Problem', 'Backend not starting');
-INSERT INTO bugitems (id, priority, username, title, description) VALUES (3, 3, 'Anakin', 'Totally Broke', 'Nothing works out');
+describe tickets;
 
 #insert into ticketusers table
 INSERT INTO bugusers (id, username, email_address, password) VALUES (1, 'Derk', 'de@alb.de', 'pass');

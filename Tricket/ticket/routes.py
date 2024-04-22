@@ -155,13 +155,19 @@ def ticket_entry():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image.save(filepath)
         else:
-            imagepath = None  # Handle the case where no image is provided
+            imagepath = None
+            filename = None
 
-        # SQL query to insert all the data including the image path
-        query_insert = f"""
-        INSERT INTO tickets (Artist, Description, EventDate, Price, SellerName, ImagePath)
-        VALUES ('{artist}', '{description}', '{date}', '{price}', '{sellername}', '{filename}')
-        """
+        if filename != None:
+            query_insert = f"""
+            INSERT INTO tickets (Artist, Description, EventDate, Price, SellerName, ImagePath)
+            VALUES ('{artist}', '{description}', '{date}', '{price}', '{sellername}', '{filename}')
+            """
+        else:
+            query_insert = f"""
+            INSERT INTO tickets (Artist, Description, EventDate, Price, SellerName, ImagePath)
+            VALUES ('{artist}', '{description}', '{date}', '{price}', '{sellername}', NULL)
+            """
         print(query_insert)
         db.session.execute(text(query_insert))  
         db.session.commit()
