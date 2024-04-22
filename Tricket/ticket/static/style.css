@@ -1,0 +1,62 @@
+body {
+  font-family: Josefin Slab, serif;
+  font-style: normal;
+  background-color: #2d5349;
+  color: white;
+}
+.main-heading {
+  height: 100vh;
+  background-color: #2d5349;
+  color: white;
+}
+h1 {
+  font-size: 148px;
+}
+.nav-item {
+  padding: 12px;
+  font-size: 24px;
+}
+
+.nav-link {
+  color: grey;
+  text-decoration: none;
+}
+.navbar-collapse {
+  margin-left: 25%;
+}
+
+.navbar-brand:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+  transition: transform .5s;
+  +margin: auto;
+}
+
+.nav-link:hover {
+  color: #b40025;
+}
+
+.navbar .dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.navbar .dropdown>.dropdown-toggle:active {
+  pointer-events: none;
+}
+
+.navbar .dropdown-menu {
+  border: none;
+  border-radius: 10px;
+}
+
+.navbar-scrolled .dropdown-menu {
+  padding-top: 2px;
+  transition: all .2s ease-in-out;
+}
+
+.navbar .dropdown-item {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-size: .85em;
+  transition: all .2s ease-in-out;
+}
