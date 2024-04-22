@@ -163,7 +163,7 @@ def ticket_entry():
         VALUES ('{artist}', '{description}', '{date}', '{price}', '{sellername}', '{filename}')
         """
         print(query_insert)
-        db.session.execute(text(query_insert))
+        db.session.execute(text(query_insert))  
         db.session.commit()
         print("Entry successful")
 
