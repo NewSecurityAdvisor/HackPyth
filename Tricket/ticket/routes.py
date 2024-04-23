@@ -103,8 +103,8 @@ def register_page():
         print(query_insert)
         db.session.execute(text(query_insert))
         db.session.commit()
-        #flash("You are registered", category='success')
-        resp = redirect('/tickets_pages')
+        flash("You are registered", category='success')
+        resp = redirect('/tickets')
         resp.set_cookie('name', username)
         print("<-register_page(), go to tickets_pages")
         return resp
@@ -112,8 +112,7 @@ def register_page():
     return render_template('register.html')
 
 @app.route('/tickets')
-def tickets_pages():
-
+def tickets():
     cookie = request.cookies.get('name')
     print("->tickets_pages()", cookie)
     if not request.cookies.get('name'):
@@ -166,12 +165,10 @@ def ticket_entry():
         else:
             query_insert = f"""
             INSERT INTO tickets (Artist, Description, EventDate, Price, SellerName, ImagePath)
-            VALUES ('{artist}', '{description}', '{date}', '{price}', '{sellername}', NULL)
+            VALUES ({artist}, '{description}', '{date}', '{price}', '{sellername}', NULL)
             """
-        print(query_insert)
         db.session.execute(text(query_insert))  
         db.session.commit()
-        print("Entry successful")
 
         resp = redirect('/tickets')
         resp.set_cookie('name', cookie)
@@ -181,15 +178,11 @@ def ticket_entry():
 
 @app.route('/ticket_item/<int:item_id>', methods=['GET'])
 def ticket_item(item_id):
-    print("->ticket_item()")
-    query_stmt = f"select * from bugitems where id={item_id}"
-
+    query_stmt = f"select * from tickets where TicketID = {item_id}"
     result = db.session.execute(text(query_stmt))
     item = result.fetchone()
-    print(query_stmt)
     if not item:
         print("item not existing")
-        # error handling ....
 
     cookie = request.cookies.get('name')
 

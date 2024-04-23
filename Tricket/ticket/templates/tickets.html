@@ -12,7 +12,7 @@ This is the ticket table
         <div class="col">
             <div class="card h-100">
                 <div class="card-header">
-                    <h3 class="card-title">{{ item[1] }} - {{ item[5] }}</h3>
+                    <h3 class="card-title">{{ item[1] | safe }} - {{ item[5] }}</h3>
                 </div>
                 <div class="card-body">
                     {% if item[6] %}
@@ -25,13 +25,12 @@ This is the ticket table
                     <p class="card-text"><strong>Price:</strong> €{{ "%.2f"|format(item[4]) }}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Buy Ticket</a>
+                    <a href="{{ url_for('ticket_item', item_id=item[0]) }}" class="btn btn-primary">More Information</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-
 
 {% endblock %}

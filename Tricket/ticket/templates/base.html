@@ -15,7 +15,7 @@
   <body>
 <nav class="navbar navbar-expand-xl navbar-light bg-light">
   <div class="container">
-      <a class="navbar-brand" href="home.html">
+      <a class="navbar-brand" href="{{ url_for('home_page') }}">
         <img id="navbar-logo" class="logo" src="../static/logo-no-background-black.png" height="75px">
       </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
                 <a class="nav-link" href="{{ url_for('ticket_entry') }}">Sell Ticket</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('tickets_pages') }}">Ticket List</a>
+                <a class="nav-link" href="{{ url_for('tickets') }}">Ticket List</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>

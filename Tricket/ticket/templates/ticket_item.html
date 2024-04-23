@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    Ticket Item
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/style.css">
+<div class="container mt-4">
+  <div class="card">
+      {% if items[6] %}
+      <img src="{{ url_for('static', filename='/upload_img/' + items[6]) }}" class="card-img-top img-fluid">
+      {% else %}
+      <img src="{{ url_for('static', filename='fallback_image.jpg') }}" class="card-img-top img-fluid" width="150px">
+      {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{ items[1] | safe}}</h5>
+      <p class="card-text">{{ items[2] | safe }}</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Ticket ID: {{ items[0] }}</li>
+        <li class="list-group-item">Event Date: {{ items[3] }}</li>
+        <li class="list-group-item">Price: ${{ items[4] }}</li>
+        <li class="list-group-item">Seller: {{ items[5] }}</li>
+      </ul>
+    </div>
+    <div class="card-footer text-muted">
+      Get your tickets now!
+    </div>
+  </div>
+</div>
+
+<a class="btn btn-dark" href="{{ url_for('tickets') }}">Back to Tickets</a>
+{% endblock %}
