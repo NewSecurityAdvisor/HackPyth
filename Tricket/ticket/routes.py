@@ -165,7 +165,7 @@ def ticket_entry():
         else:
             query_insert = f"""
             INSERT INTO tickets (Artist, Description, EventDate, Price, SellerName, ImagePath)
-            VALUES ({artist}, '{description}', '{date}', '{price}', '{sellername}', NULL)
+            VALUES ('{artist}', '{description}', '{date}', '{price}', '{sellername}', NULL)
             """
         db.session.execute(text(query_insert))  
         db.session.commit()
