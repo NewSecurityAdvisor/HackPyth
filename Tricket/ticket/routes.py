@@ -32,13 +32,17 @@ def login_pages():
             flash(f"Username or Password wrong", category='warning')
             return render_template('login.html', cookie=None)
 
-        query_stmt = f"""select username from bugusers where username = '{username}' and password = '{password}'"""
+        query_stmt = f"""select username from bugusers where username = {username} and password = {password}"""
         result = db.session.execute(text(query_stmt))
 
         #theoretischer Angriff pass' UNION DELETE from Tickets where TicketID = '10
-        #theoretischer Angriff pass'; UNION DELETE from Tickets where TicketID = '10' #
+        #theoretischer Angriff pass' UNION DELETE from Tickets where TicketID = '10' #
         #pass'; DELETE from Tickets where TicketID = 10 #
+        #pass' UNION DO sleep(5) #
         #pass' union select username from bugusers where username = 'test' and password = 'pass' #
+        #---
+        #test' UNION SELECT username FROM admin_users --
+        #test'; SELECT SLEEP(10) --
 
         user = result.fetchall()
         if not user:
@@ -92,7 +96,8 @@ def register_page():
             #flash("Password1 not valid", category='danger')
             return render_template('register.html', cookie=None)
 
-        query_stmt = f"select * from bugusers where username = '{username}'"
+        query_stmt = f"""select * from bugusers where username = {username}"""
+        #possible Attack -> tester5 ' UNION delete from Tickets where TicketID = 10' #
         print(query_stmt)
         result = db.session.execute(text(query_stmt))
         item = result.fetchone()
@@ -103,7 +108,7 @@ def register_page():
             print("Username exists")
             return render_template('register.html', cookie=None)
 
-        query_insert = f"insert into bugusers (username, email_address, password) values ('{username}', '{email}', '{password1}')"
+        query_insert = f"""insert into bugusers (username, email_address, password) values ('{username}', '{email}', '{password1}')"""
         print(query_insert)
         db.session.execute(text(query_insert))
         db.session.commit()
@@ -123,7 +128,7 @@ def tickets():
         print("<-tickets_pages(), no cookie")
         return redirect(url_for('login_pages'))
 
-    query_stmt = f"select * from tickets"
+    query_stmt = f"""select * from tickets"""
     result = db.session.execute(text(query_stmt))
     itemsquery = result.fetchall()
 
