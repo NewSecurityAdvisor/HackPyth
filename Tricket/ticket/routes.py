@@ -23,21 +23,26 @@ def login_pages():
         if (username is None or
                 isinstance(username, str) is False or
                 len(username) < 3):
-            #flash(f"Username or Password wrong", category='warning')
+            flash(f"Username or Password wrong", category='warning')
             return render_template('login.html', cookie=None)
 
         if (password is None or
                 isinstance(password, str) is False or
                 len(password) < 3):
-            #flash(f"Username or Password wrong", category='warning')
+            flash(f"Username or Password wrong", category='warning')
             return render_template('login.html', cookie=None)
 
         query_stmt = f"""select username from bugusers where username = '{username}' and password = '{password}'"""
         result = db.session.execute(text(query_stmt))
 
+        #theoretischer Angriff pass' UNION DELETE from Tickets where TicketID = '10
+        #theoretischer Angriff pass'; UNION DELETE from Tickets where TicketID = '10' #
+        #pass'; DELETE from Tickets where TicketID = 10 #
+        #pass' union select username from bugusers where username = 'test' and password = 'pass' #
+
         user = result.fetchall()
         if not user:
-            #flash(f"Username or Password wrong", category='warning')
+            flash(f"Username or Password wrong", category='warning')
             print("debug1")
             return render_template('login.html', cookie=None)
 
