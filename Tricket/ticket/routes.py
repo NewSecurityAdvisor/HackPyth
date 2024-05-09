@@ -34,11 +34,13 @@ def login_pages():
 
         query_stmt = f"""select username from bugusers where username = '{username}' and password = '{password}'"""
         result = db.session.execute(text(query_stmt))
+        #flash(result, category='success')
 
         #theoretischer Angriff pass' UNION DELETE from Tickets where TicketID = '10
         #theoretischer Angriff pass'; UNION DELETE from Tickets where TicketID = '10' #
         #pass'; DELETE from Tickets where TicketID = 10 #
-        #pass' union select username from bugusers where username = 'test' and password = 'pass' #
+        #test' union select username from bugusers where username = 'test' and password = 'pass' #
+        # /113%20union%20select%20null,username,password,null,null,null,null%20from%20bugusers%20where%20id%20=%205;--
 
         user = result.fetchall()
         if not user:
@@ -180,7 +182,7 @@ def ticket_entry():
 
     return render_template('ticket_entry.html', cookie=cookie)
 
-@app.route('/ticket_item/<int:item_id>', methods=['GET'])
+@app.route('/ticket_item/<item_id>', methods=['GET'])
 def ticket_item(item_id):
     query_stmt = f"select * from tickets where TicketID = {item_id}"
     result = db.session.execute(text(query_stmt))
