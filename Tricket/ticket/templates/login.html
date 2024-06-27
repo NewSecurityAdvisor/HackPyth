@@ -9,21 +9,19 @@ Login
 <body class="text-center">
     <div class="container p-3">
         <form method="POST" class="form-register" action="/login">
+            {{ form.hidden_tag() }}
             <h1 class="h3 mb-3 font-weight-normal">
                 Please Login
             </h1>
 
             <label for="Username" class="form-label">Username</label>
-            <input type="text" id="Username" name="Username" class="form-control">
+            {{ form.username(class_="form-control") }}
             <label for="Password" class="form-label">Password</label>
-            <input type="password" id="Password" name="Password" class="form-control" aria-describedby="passwordHelpBlock">
+            {{ form.password(class_="form-control", aria_describedby="passwordHelpBlock") }}
 
             <br>
             <button type="submit" class="btn btn-dark" name="login">Login</button>
-
         </form>
     </div>
-</body>
-
 </body>
 {% endblock %}

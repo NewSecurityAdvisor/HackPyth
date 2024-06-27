@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Login Page
+Enter New Ticket
 {% endblock %}
 
 {% block content %}
@@ -9,31 +9,64 @@ Login Page
 <body class="text-center">
 <div class="container">
 <form method="POST" class="form-register" action="/ticket_entry" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}  <!-- CSRF token -->
+
     <h1 class="h3 mb-3 font-weight-normal">Please Enter New Ticket</h1>
 
     <!-- Artist Name Input -->
-    <label for="Artist" class="form-label">Artist</label>
-    <input type="text" id="Artist" name="Artist" class="form-control" required>
+    <div class="form-group">
+        {{ form.Artist.label(class="form-label") }}
+        {{ form.Artist(class="form-control") }}
+        {% for error in form.Artist.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
 
     <!-- Event Date Input -->
-    <label for="EventDate" class="form-label">Event Date</label>
-    <input type="date" id="EventDate" name="EventDate" class="form-control" required>
+    <div class="form-group">
+        {{ form.EventDate.label(class="form-label") }}
+        {{ form.EventDate(class="form-control") }}
+        {% for error in form.EventDate.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
 
     <!-- Price Input -->
-    <label for="Price" class="form-label">Price ($)</label>
-    <input type="number" id="Price" name="Price" class="form-control" step="0.01" min="0" required>
+    <div class="form-group">
+        {{ form.Price.label(class="form-label") }}
+        {{ form.Price(class="form-control") }}
+        {% for error in form.Price.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
 
     <!-- Seller Name Input -->
-    <label for="SellerName" class="form-label">Seller Name</label>
-    <input type="text" id="SellerName" name="SellerName" class="form-control" required>
+    <div class="form-group">
+        {{ form.SellerName.label(class="form-label") }}
+        {{ form.SellerName(class="form-control") }}
+        {% for error in form.SellerName.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
 
     <!-- Description Input -->
-    <label for="Description" class="form-label">Description</label>
-    <textarea class="form-control" id="Description" name="Description" rows="3"></textarea>
+    <div class="form-group">
+        {{ form.Description.label(class="form-label") }}
+        {{ form.Description(class="form-control") }}
+        {% for error in form.Description.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
 
     <!-- Image Input -->
-    <label for="Image" class="form-label">Upload Image</label>
-    <input type="file" id="Image" name="Image" class="form-control">
+    <div class="form-group">
+        {{ form.Image.label(class="form-label") }}
+        {{ form.Image(class="form-control") }}
+        {% for error in form.Image.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
     <br>
     <button type="submit" class="btn btn-dark">Enter</button>
 </form>
