@@ -2,7 +2,7 @@ import os
 import subprocess
 import flask_unsign_wordlist
 
-found_cookie = "eyJjc3JmX3Rva2VuIjoiZTNmYjhhNGRkZWIzM2QwOGMxODBlZDQzNDQ3OTdiYjk1MDRmYzg4MiIsIm5hbWUiOiJ0ZXN0In0.Zn22vQ.Dz-xmi6dTHo_DnATkQ_Z9Ch3zAs"
+found_cookie = "eyJjc3JmX3Rva2VuIjoiMTMxYWM5NGE2YTRiMWY2YjJkNmNiOGE4NTk0MTFkMWZmNjk1OThlMSIsIm5hbWUiOiJ0ZXN0In0.ZoOmbA.tPeioWM0MpYlFk1XG6SuSCBk5R0"
 
 cookie_result = subprocess.run(['flask-unsign', '--decode', '--cookie', found_cookie], capture_output=True, text=True)
 print("Decodierter Cookie: ", cookie_result.stdout)
