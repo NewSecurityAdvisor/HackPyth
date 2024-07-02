@@ -104,7 +104,7 @@ def register_page():
 def tickets():
     cookie = session.get('name')
     if not cookie:
-        return redirect(url_for('login_pages'))
+        return redirect(url_for('login'))
 
     query_stmt = text("SELECT * FROM tickets")
     result = db.session.execute(query_stmt)
